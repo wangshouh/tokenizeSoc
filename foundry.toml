@@ -1,2 +1,3 @@
-[profile.ci]
-fuzz-runs = 10_000
+[default]
+optimizer = true
+fuzz_runs = 1_000
