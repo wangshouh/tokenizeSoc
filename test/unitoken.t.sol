@@ -9,7 +9,8 @@ contract TestContract is Test {
     UinToken internal token;
 
     function setUp() public {
-        token = new UinToken("TEST", "TET", 6, 1_000_000_000, address(1));
+        token = new UinToken();
+        token.initialize("TEST", "TET", 6, 1_000_000_000, address(1));
     }
 
     function testOwnerBalance() public {
