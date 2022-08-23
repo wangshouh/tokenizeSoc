@@ -10,7 +10,13 @@ contract TestContract is Test {
 
     function setUp() public {
         token = new UinToken();
-        token.initialize("TEST", "TET", 6, 1_000_000_000, address(1));
+        UinToken.InitArgs memory args;
+        args.name = "TEST";
+        args.symbol = "TET";
+        args.decimals = 6;
+        args.totalSupply = 1_000_000_000;
+        args.owner = address(1);
+        token.initialize(args);
     }
 
     function testOwnerBalance() public {
