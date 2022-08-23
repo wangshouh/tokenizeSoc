@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-// import "solmate/tokens/ERC20.sol";
 import "openzeppelin-contracts/contracts/proxy/utils/Initializable.sol";
+import "./IUnitoken.sol";
 
-contract UinToken is Initializable {
+contract UinToken is Initializable, IUnitoken {
     /*//////////////////////////////////////////////////////////////
                                  EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -207,17 +207,10 @@ contract UinToken is Initializable {
         emit Transfer(from, address(0), amount);
     }
 
-    struct InitArgs {
-        string  name;
-        string  symbol;
-        uint8 decimals;
-        uint256 totalSupply;
-        address owner;
-    }
 
     function initialize(
         InitArgs memory _args
-    ) public initializer {
+    ) public initializer override {
         name = _args.name;
         symbol = _args.symbol;
         decimals = _args.decimals;
