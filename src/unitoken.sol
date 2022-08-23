@@ -207,18 +207,22 @@ contract UinToken is Initializable {
         emit Transfer(from, address(0), amount);
     }
 
+    struct InitArgs {
+        string  name;
+        string  symbol;
+        uint8 decimals;
+        uint256 totalSupply;
+        address owner;
+    }
+
     function initialize(
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals,
-        uint256 _totalSupply,
-        address _owner
+        InitArgs memory _args
     ) public initializer {
-        name = _name;
-        symbol = _symbol;
-        decimals = _decimals;
-        totalSupply = _totalSupply;
-        _mint(_owner, _totalSupply);
+        name = _args.name;
+        symbol = _args.symbol;
+        decimals = _args.decimals;
+        totalSupply = _args.totalSupply;
+        _mint(_args.owner, _args.totalSupply);
         INITIAL_CHAIN_ID = block.chainid;
         INITIAL_DOMAIN_SEPARATOR = computeDomainSeparator();
     }
